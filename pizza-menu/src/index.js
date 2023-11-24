@@ -76,9 +76,26 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+
+      {/* <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        price={6}
+        photoName="pizzas/focaccia.jpg"
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        price={12}
+        photoName="pizzas/funghi.jpg"
+      />
+       */}
     </main>
   );
 }
@@ -102,13 +119,17 @@ function Footer() {
   // return React.createElement("footer", null, "We're currently open");
 }
 
-function Pizza() {
+function Pizza(props) {
+  console.log(props);
   return (
-    <div>
-      <img src="pizzas/focaccia.jpg" alt="Focaccia" />
-      <h3>Pizza Focaccia</h3>
-      <p>Bread with italian olive oil and rosemary</p>
-    </div>
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
   );
 }
 
