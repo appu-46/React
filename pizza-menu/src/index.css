@@ -114,6 +114,8 @@ body {
 
 .pizza img {
   width: 12rem;
+  border: 2px solid rgb(34, 34, 34);
+  border-radius: 15px;
   aspect-ratio: 1;
   align-self: start;
 }
@@ -127,12 +129,12 @@ body {
 
 .pizza h3 {
   font-size: 2rem;
-  font-weight: 400;
+  /* font-weight: 400; */
 }
 
 .pizza p {
   font-size: 1.4rem;
-  font-weight: 300;
+  /* font-weight: 300; */
   font-style: italic;
   margin-bottom: auto;
 }
@@ -154,7 +156,7 @@ body {
 /* *************** */
 
 .footer {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .order {
