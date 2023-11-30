@@ -104,7 +104,7 @@ function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
   const closeHour = 22;
-  const isOpen = hour >= openHour || hour <= closeHour;
+  const isOpen = hour >= openHour && hour <= closeHour;
 
   console.log(isOpen);
 
@@ -112,11 +112,28 @@ function Footer() {
   // else alert(`We're currently close!`);
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We're currently open!
+      {isOpen ? (
+        <Order closeHour={closeHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00
+        </p>
+      )}
     </footer>
   );
   // Ugly way:
   // return React.createElement("footer", null, "We're currently open");
+}
+
+function Order(props) {
+  return (
+    <div className="order">
+      <p>
+        We're open until {props.closeHour}:00 Come visit us or order online.
+      </p>
+      <button className="btn"> Order </button>
+    </div>
+  );
 }
 
 function Pizza(props) {
