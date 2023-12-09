@@ -8,7 +8,7 @@ export default function App() {
     </div>
   );
 }
-
+// Coding challenge 1
 function Counter() {
   const [step, setStep] = useState(0);
   const [count, setCount] = useState(0);
