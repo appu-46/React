@@ -11,16 +11,16 @@ export default function App() {
   // console.log(arr);
   // const step = 1;
   function handlePrevious() {
-    if (step > 0) setStep(step - 1);
+    if (step > 0) setStep((s) => s - 1);
     // alert("previous");
   }
 
   function handleNext() {
-    if (step < messages.length) setStep(step + 1);
+    if (step < messages.length) setStep((s) => s + 1);
   }
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
