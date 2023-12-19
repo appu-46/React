@@ -110,6 +110,7 @@ function FlashCards() {
 }
 */
 
+/*
 // Coding Challenge 3 : Date counter V2
 export default function App() {
   return (
@@ -146,7 +147,7 @@ function Counter() {
         <button onClick={() => setStep((s) => s - 1)}> - </button>
         Step: {step}
         <button onClick={() => setStep((s) => s + 1)}> + </button>
-      </div> */}
+      </div> }
       <div>
         <button onClick={() => setCount((c) => c - step)}> - </button>
         <input type="text" placeholder={count} value={count} />
@@ -165,6 +166,65 @@ function Counter() {
       <div>
         <button onClick={handleReset}> Reset </button>
       </div>
+    </div>
+  );
+}
+*/
+
+// Coding Excercise 1 : Accordian
+
+const faqs = [
+  {
+    title: "Where are these chairs assembled?",
+    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
+  },
+  {
+    title: "How long do I have to return my chair?",
+    text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
+  },
+  {
+    title: "Do you ship to countries outside the EU?",
+    text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+  },
+];
+
+export default function App() {
+  return (
+    <div>
+      <Accordion data={faqs} />
+    </div>
+  );
+}
+
+function Accordion({ data }) {
+  return (
+    <div className="accordian">
+      <ul>
+        {data.map((el, i) => (
+          <AccordianItem
+            title={el.title}
+            text={el.text}
+            num={i + 1}
+            key={el.title}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function AccordianItem({ num, title, text, key }) {
+  const [isOpen, setisOpen] = useState(false);
+
+  function handlToggle() {
+    setisOpen(!isOpen);
+  }
+  return (
+    <div className={`item ${isOpen ? "open" : ""}`} onClick={handlToggle}>
+      <p className="number">{num < 9 ? `0${num}` : { num }}</p>
+      <p className="title">{title}</p>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
+      {isOpen && <div className="content-box">{text}</div>}
     </div>
   );
 }
