@@ -197,34 +197,51 @@ export default function App() {
 }
 
 function Accordion({ data }) {
+  const [curOpen, setCurOpen] = useState(null);
   return (
-    <div className="accordian">
-      <ul>
-        {data.map((el, i) => (
-          <AccordianItem
-            title={el.title}
-            text={el.text}
-            num={i + 1}
-            key={el.title}
-          />
-        ))}
-      </ul>
+    <div className="accordion">
+      {data.map((el, i) => (
+        <AccordionItem
+          title={el.title}
+          num={i + 1}
+          curOpen={curOpen}
+          onOpen={setCurOpen}
+          key={el.title}
+        >
+          {el.text}
+        </AccordionItem>
+      ))}
+
+      <AccordionItem
+        curOpen={curOpen}
+        onOpen={setCurOpen}
+        title={`Test 1`}
+        key={`Test 1`}
+        num={22}
+      >
+        <p>Allows React developers to: </p>
+        <ul>
+          <li>Break up UI into components</li>
+          <li>Make components reusable</li>
+          <li>Place state efficiently</li>
+        </ul>
+      </AccordionItem>
     </div>
   );
 }
 
-function AccordianItem({ num, title, text, key }) {
-  const [isOpen, setisOpen] = useState(false);
-
+function AccordionItem({ num, title, curOpen, onOpen, children }) {
+  const isOpen = num === curOpen;
+  // console.log(key);
   function handlToggle() {
-    setisOpen(!isOpen);
+    onOpen(isOpen ? null : num);
   }
   return (
     <div className={`item ${isOpen ? "open" : ""}`} onClick={handlToggle}>
-      <p className="number">{num < 9 ? `0${num}` : { num }}</p>
+      <p className="number">{num < 9 ? `0${num}` : num}</p>
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen && <div className="content-box">{text}</div>}
+      {isOpen && <div className="content-box">{children}</div>}
     </div>
   );
 }
