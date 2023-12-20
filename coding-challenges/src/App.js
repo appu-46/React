@@ -1,4 +1,7 @@
 import { useState } from "react";
+import BillInput from "./BillInput";
+import TipInput from "./TipInput";
+import Calculation from "./Calculation";
 import "./App.css";
 
 // Coding challenge 1
@@ -171,6 +174,7 @@ function Counter() {
 }
 */
 
+/*
 // Coding Excercise 1 : Accordian
 
 const faqs = [
@@ -243,5 +247,48 @@ function AccordionItem({ num, title, curOpen, onOpen, children }) {
       <p className="icon">{isOpen ? "-" : "+"}</p>
       {isOpen && <div className="content-box">{children}</div>}
     </div>
+  );
+}
+*/
+
+export default function App() {
+  const [bill, setBill] = useState(0);
+  const [tipPercentage, setTipPercentage] = useState(0);
+  const [tipPercentage1, setTipPercentage1] = useState(0);
+
+  function handleReset() {
+    setBill(0);
+    setTipPercentage(0);
+    setTipPercentage1(0);
+  }
+  return (
+    <>
+      <div className="questions">
+        <BillInput bill={bill} onSetBill={setBill}></BillInput>
+        <TipInput
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        >
+          How did you like the service?
+        </TipInput>
+        <TipInput
+          tipPercentage={tipPercentage1}
+          setTipPercentage={setTipPercentage1}
+        >
+          How did your friend like the service?
+        </TipInput>
+      </div>
+      <div className="calculation">
+        <Calculation
+          bill={bill}
+          tipPercentage={(tipPercentage + tipPercentage1) / 2}
+        />
+      </div>
+      <div>
+        <button className="button" onClick={() => handleReset()}>
+          Reset
+        </button>
+      </div>
+    </>
   );
 }
