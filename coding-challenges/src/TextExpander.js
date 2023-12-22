@@ -39,7 +39,7 @@ function TextExpander({
   collapsedNumWords = 10,
   expandButtonText = "Show more",
   collapseButtonText = "Slow less",
-  buttonColor = "#fff",
+  buttonColor = "cyan",
 }) {
   const text = children.split(" ");
   const collaspedText = text.slice(0, collapsedNumWords).join(" ");
@@ -75,7 +75,12 @@ function ExpandedButton({
 }) {
   return (
     <button
-      style={{ color: buttonColor, backgroundColor: "inherit", border: null }}
+      style={{
+        color: buttonColor,
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+      }}
       onClick={onExpand}
     >
       {textState ? `${expandButtonText}` : `${collapseButtonText}`}
