@@ -164,11 +164,17 @@ body {
 }
 
 body {
+  margin: 1rem 1rem 1rem 1rem;
   align-self: center;
   font-family: sans-serif;
   background-color: #3a3a3a;
   color: #f7f7f7;
   line-height: 1;
+}
+
+.para {
+  /* margin-top: 1rem ; */
+  margin-bottom: 1rem;
 }
 
 .questions {

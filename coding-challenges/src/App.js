@@ -1,8 +1,19 @@
 import { useState } from "react";
-import BillInput from "./BillInput";
-import TipInput from "./TipInput";
-import Calculation from "./Calculation";
+// import BillInput from "./BillInput";
+// import TipInput from "./TipInput";
+// import Calculation from "./Calculation";
+import TextExpanderMain from "./TextExpander";
 import "./App.css";
+
+// Coding Challenge : text expander
+
+export default function App() {
+  return (
+    <div>
+      <TextExpanderMain />
+    </div>
+  );
+}
 
 // Coding challenge 1
 /*
@@ -251,6 +262,7 @@ function AccordionItem({ num, title, curOpen, onOpen, children }) {
 }
 */
 
+/*
 export default function App() {
   const [bill, setBill] = useState(0);
   const [tipPercentage, setTipPercentage] = useState(0);
@@ -292,3 +304,4 @@ export default function App() {
     </>
   );
 }
+*/
