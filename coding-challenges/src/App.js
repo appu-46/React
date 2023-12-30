@@ -2,11 +2,22 @@
 // import BillInput from "./BillInput";
 // import TipInput from "./TipInput";
 // import Calculation from "./Calculation";
-import TextExpanderMain from "./TextExpander";
+// import TextExpanderMain from "./TextExpander";
+import CurrencyConverter from "./Currency_converter";
 import "./App.css";
 
-// Coding Challenge : text expander
+// coding Challenege : Currency conversion
 
+export default function App() {
+  return (
+    <div>
+      <CurrencyConverter />
+    </div>
+  );
+}
+
+// Coding Challenge : text expander
+/*
 export default function App() {
   return (
     <div>
@@ -14,7 +25,7 @@ export default function App() {
     </div>
   );
 }
-
+*/
 // Coding challenge 1
 /*
 export default function App() {

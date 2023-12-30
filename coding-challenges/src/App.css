@@ -171,6 +171,9 @@ body {
   color: #f7f7f7;
   line-height: 1;
 }
+div {
+  margin: 1rem 0rem 1rem 0rem;
+}
 
 .para {
   /* margin-top: 1rem ; */
