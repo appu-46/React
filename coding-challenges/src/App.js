@@ -3,11 +3,23 @@
 // import TipInput from "./TipInput";
 // import Calculation from "./Calculation";
 // import TextExpanderMain from "./TextExpander";
-import CurrencyConverter from "./Currency_converter";
+// import CurrencyConverter from "./Currency_converter";
+import Geolocation from "./Geolocation";
 import "./App.css";
+
+// Coding Challenege : geoLocation useing as a custom hook
+
+export default function App() {
+  return (
+    <div>
+      <Geolocation />
+    </div>
+  );
+}
 
 // coding Challenege : Currency conversion
 
+/*
 export default function App() {
   return (
     <div>
@@ -15,6 +27,7 @@ export default function App() {
     </div>
   );
 }
+*/
 
 // Coding Challenge : text expander
 /*
