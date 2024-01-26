@@ -4,18 +4,29 @@
 // import Calculation from "./Calculation";
 // import TextExpanderMain from "./TextExpander";
 // import CurrencyConverter from "./Currency_converter";
-import Geolocation from "./Geolocation";
+// import Geolocation from "./Geolocation";
+import Bank from "./Bank";
 import "./App.css";
 
-// Coding Challenege : geoLocation useing as a custom hook
+// Coding Challenege : bank app using useReducer
 
 export default function App() {
   return (
     <div>
-      <Geolocation />
+      <Bank />
     </div>
   );
 }
+
+// Coding Challenege : geoLocation useing as a custom hook
+
+// export default function App() {
+//   return (
+//     <div>
+//       <Geolocation />
+//     </div>
+//   );
+// }
 
 // coding Challenege : Currency conversion
 

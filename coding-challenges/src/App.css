@@ -1,6 +1,4 @@
-/*.App {
-  text-align: center;
-}
+/*
 
 .App-logo {
   height: 40vmin;
@@ -162,6 +160,9 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+.App {
+  text-align: center;
+}
 
 body {
   margin: 1rem 1rem 1rem 1rem;
@@ -172,6 +173,9 @@ body {
   line-height: 1;
 }
 div {
+  margin: 1rem 0rem 1rem 0rem;
+}
+p {
   margin: 1rem 0rem 1rem 0rem;
 }
 a {
@@ -198,8 +202,9 @@ a :visited {
   margin: 2rem 2rem 2rem 2rem;
 }
 
-.button {
-  width: 5rem;
-  height: 2rem;
-  margin: 2rem 2rem 2rem 2rem;
+button {
+  border-radius: 2rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem;
 }
