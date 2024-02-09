@@ -37,6 +37,12 @@
   border: 1px solid var(--color-light--1);
   color: var(--color-dark--0);
 }
+.number {
+  font-family: "Manrope", sans-serif;
+  /* color: var(--color-light--2); */
+  /* font-weight: 400;
+  line-height: 1.6; */
+}
 
 :global(.react-datepicker) {
   font-family: inherit;
