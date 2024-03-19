@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 CitiesProvider.propTypes = {
@@ -41,11 +41,11 @@ function CitiesProvider({ children }) {
   );
 }
 
-// function useCities() {
-//   const context = useContext(CitiesContext);
-//   if (context === undefined)
-//     throw new Error("CititeContext was used outside the CitiesProvider");
-//   return context;
-// }
+function useCities() {
+  const context = useContext(CitiesContext);
+  if (context === undefined)
+    throw new Error("CititeContext was used outside the CitiesProvider");
+  return context;
+}
 
-export { CitiesProvider };
+export { CitiesProvider, useCities };
