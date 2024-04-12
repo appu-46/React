@@ -53,7 +53,7 @@ function Order() {
     cart,
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-
+  console.log(cart);
   return (
     <div>
       <div>
@@ -61,6 +61,7 @@ function Order() {
 
         <div>
           {priority && <span>Priority</span>}
+          <span>OrderID {id}</span>
           <span>{status} order</span>
         </div>
       </div>
