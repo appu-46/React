@@ -22,7 +22,6 @@ function Order() {
   } = order;
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-  console.log(cart);
   return (
     <div>
       <div>
@@ -55,7 +54,6 @@ function Order() {
 
 export async function loader({ params }) {
   const order = await getOrder(params.orderId);
-  console.log(order);
   return order;
 }
 
