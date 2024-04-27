@@ -1,6 +1,8 @@
 // import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
+import Input from "../../ui/Input";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -50,13 +52,23 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <Input
+            className="px-4 py-2 text-sm duration-300 border rounded-full border-stone-300 tranistion-all placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400"
+            type="text"
+            name="customer"
+            required
+          />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <Input
+              className="px-4 py-2 text-sm duration-300 border rounded-full border-stone-300 tranistion-all placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400"
+              type="tel"
+              name="phone"
+              required
+            />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -64,12 +76,13 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <Input className="input" type="text" name="address" required />
           </div>
         </div>
 
         <div>
           <input
+            className="w-6 h-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400"
             type="checkbox"
             name="priority"
             id="priority"
@@ -81,9 +94,9 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting}>
+          <Button disabled={isSubmitting}>
             {isSubmitting ? "Placing order..." : "Order now"}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
