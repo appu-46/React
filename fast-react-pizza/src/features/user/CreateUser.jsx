@@ -33,7 +33,9 @@ function CreateUser() {
 
       {username !== "" && (
         <div>
-          <Button className="my-2">Start ordering</Button>
+          <Button type="primary" className="my-2">
+            Start ordering
+          </Button>
         </div>
       )}
     </form>
