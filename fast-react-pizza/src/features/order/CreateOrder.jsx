@@ -11,7 +11,7 @@ const isValidPhone = (str) =>
   );
 const styles =
   "w-full px-4 py-2 text-sm duration-300 border rounded-full border-stone-300 tranistion-all placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400";
-  
+
 const fakeCart = [
   {
     pizzaId: 12,
@@ -83,7 +83,7 @@ function CreateOrder() {
 
         <div className="flex flex-col gap-2 mb-5 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
-          <divc className="w-full">
+          <div className="w-full">
             <input
               placeholder="Enter Address"
               className={styles}
@@ -91,7 +91,7 @@ function CreateOrder() {
               name="address"
               required
             />
-          </divc>
+          </div>
         </div>
 
         <div className="flex items-center gap-5 mb-12">
