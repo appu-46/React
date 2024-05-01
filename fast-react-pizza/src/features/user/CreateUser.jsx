@@ -1,15 +1,24 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
+import { useDispatch } from "react-redux";
+import { updateName } from "./userSlice";
+import { useNavigate } from "react-router-dom";
 // import Input from "../../ui/Input";
 
 const styles =
-  "w-72 px-4 py-2 text-sm duration-300 border rounded-full border-stone-300 tranistion-all placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400";
+  "mb-4 w-72 px-4 py-2 text-sm duration-300 border rounded-full border-stone-300 tranistion-all placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!username) return;
+    dispatch(updateName(username));
+    console.log(username);
+    navigate("/menu");
   }
 
   return (
@@ -36,7 +45,7 @@ function CreateUser() {
 
       {username !== "" && (
         <div>
-          <Button type="primary" className="my-2">
+          <Button to="/" type="primary" className="my-2">
             Start ordering
           </Button>
         </div>
