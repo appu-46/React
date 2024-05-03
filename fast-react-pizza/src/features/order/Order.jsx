@@ -34,7 +34,6 @@ function Order() {
             </span>
           )}
           <span className="px-3 py-1 text-sm tracking-wide text-green-100 uppercase bg-green-500 rounded-full">
-            {" "}
             {status} order
           </span>
         </div>
@@ -52,7 +51,7 @@ function Order() {
       </div>
       <ul className="border-t border-b divide-y divide-stone-300 border-stone-300">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.key} />
+          <OrderItem item={item} key={item.pizzaId} />
         ))}
       </ul>
 
