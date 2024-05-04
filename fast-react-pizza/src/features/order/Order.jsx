@@ -13,6 +13,7 @@ import {
 } from "../../utils/helpers";
 import OrderItem from "../order/OrderItem";
 import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
 function Order() {
   const order = useLoaderData();
 
@@ -20,7 +21,7 @@ function Order() {
 
   useEffect(
     function () {
-      if (!fetcher.data && fetcher.idle === "idle") fetcher.load("/menu");
+      if (!fetcher.data && fetcher.state === "idle") fetcher.load("/menu");
     },
     [fetcher]
   );
@@ -53,7 +54,6 @@ function Order() {
           </span>
         </div>
       </div>
-
       <div className="flex flex-wrap items-center justify-between gap-2 px-6 py-5 bg-stone-200">
         <p className="font-medium">
           {deliveryIn >= 0
@@ -66,10 +66,16 @@ function Order() {
       </div>
       <ul className="border-t border-b divide-y divide-stone-300 border-stone-300">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.pizzaId} />
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            isLoadingIngredients={fetcher.state === "loading"}
+            ingredients={
+              fetcher.data?.find((el) => el.id === item.pizzaId).ingredients
+            }
+          />
         ))}
       </ul>
-
       <div className="px-6 py-5 space-y-2 bg-stone-200">
         <p className="text-sm font-medium text-stone-600">
           Price pizza: {formatCurrency(orderPrice)}
@@ -83,6 +89,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && deliveryIn > 0 && <UpdateOrder />}
     </div>
   );
 }
