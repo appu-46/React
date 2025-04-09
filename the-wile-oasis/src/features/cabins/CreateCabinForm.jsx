@@ -59,6 +59,7 @@ function CreateCabinForm() {
       toast.success("Cabin added successfully!");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
       reset();
+      console.log("test");
     },
     onError: (err) => toast.error(err.message),
   });
