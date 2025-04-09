@@ -15,13 +15,23 @@ const Main = styled.main`
   background-color: var(--color-grey-200);
 `;
 
+const Container = styled.div`
+  max-width: 120rem;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+`;
+
 function Applayout() {
   return (
     <StyledApplayout>
       <Header />
       <Sidebar />
       <Main>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </Main>
     </StyledApplayout>
   );
