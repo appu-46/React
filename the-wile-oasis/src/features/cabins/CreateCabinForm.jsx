@@ -98,14 +98,16 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow orientation="horizontal">
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" size="medium" type="reset">
-          Cancel
-        </Button>
-        <Button variation="primary" size="medium" disabled={isCreating}>
-          Add cabin
-        </Button>
+        <>
+          <Button variation="secondary" size="medium" type="reset">
+            Cancel
+          </Button>
+          <Button variation="primary" size="medium" disabled={isCreating}>
+            Add cabin
+          </Button>
+        </>
       </FormRow>
     </Form>
   );

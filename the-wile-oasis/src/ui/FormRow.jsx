@@ -46,14 +46,21 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
+const Validate = styled.div`
+  display: flex;
+  flex-direction: ${(props) =>
+    props.orientation === "horizontal" ? "row" : "column"};
+  gap: 0.6rem;
+`;
+
 function FormRow({ label, error, children, orientation }) {
   return (
     <StyledFormRow orientation={orientation}>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
-      <div>
+      <Validate orientation={orientation}>
         {children}
         {error && <Error>{error}</Error>}
-      </div>
+      </Validate>
     </StyledFormRow>
   );
 }
