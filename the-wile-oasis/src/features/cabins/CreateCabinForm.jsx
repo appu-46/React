@@ -25,7 +25,8 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
+    console.log(data);
   }
 
   return (
@@ -38,7 +39,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="Max Capacity" error={errors?.maxCapacity?.message}>
+      <FormRow label="Maximum Capacity" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
           id="maxCapacity"
@@ -90,12 +91,7 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Cabin Image">
-        <FileInput
-          type="text"
-          id="image"
-          accept="image/*"
-          {...register("image")}
-        />
+        <FileInput id="image" accept="image/*" {...register("image")} />
       </FormRow>
 
       <FormRow orientation="horizontal">
