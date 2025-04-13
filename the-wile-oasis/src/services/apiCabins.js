@@ -21,11 +21,15 @@ export async function deleteCabins(id) {
 }
 
 export async function createCabin(newCabin) {
-  const imageName = `${Math.random(8)}-${newCabin.image?.name.replaceAll(
-    "/",
-    ""
-  )}`;
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
+  const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
+  console.log(newCabin);
+
+  const imageName = hasImagePath
+    ? newCabin.image
+    : `${Math.random(8)}-${newCabin.image?.name.replaceAll("/", "")}`;
+  const imagePath = hasImagePath
+    ? newCabin.image
+    : `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
 
   const { data, error } = await supabase
     .from("cabins")
@@ -36,6 +40,8 @@ export async function createCabin(newCabin) {
     console.log(error);
     throw new Error(error.message);
   }
+  //Upload the image
+  if (hasImagePath) return data;
 
   const { error: uploadError } = await supabase.storage
     .from("cabin-images")
