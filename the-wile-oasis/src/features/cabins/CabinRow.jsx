@@ -47,7 +47,6 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  // {id:created_at:
   const {
     id: cabinId,
     name,
