@@ -4,28 +4,22 @@ import Form from "../../ui/Form";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createCabin } from "../../services/apiCabins";
-import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
+import { useCreateCabin } from "./useCreateCabin";
 
 function CreateCabinForm() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const queryClient = useQueryClient();
   const { errors } = formState;
 
-  const { mutate, isPending: isCreating } = useMutation({
-    mutationFn: createCabin,
-    onSuccess: () => {
-      toast.success("New cabin added successfully!");
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
+  const { createCabin, isCreating } = useCreateCabin();
 
   function onSubmit(data) {
-    mutate({ ...data, image: data.image[0] });
+    createCabin(
+      { ...data, image: data.image?.[0] },
+      {
+        onSuccess: () => reset(),
+      }
+    );
     console.log(data);
   }
 
@@ -73,7 +67,6 @@ function CreateCabinForm() {
           id="discount"
           defaultValue={0}
           {...register("discount", {
-            required: "This field is required",
             validate: (value) =>
               +value < +getValues().regularPrice ||
               `Discount should be less than regular price.`,

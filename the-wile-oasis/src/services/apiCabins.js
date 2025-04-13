@@ -21,13 +21,11 @@ export async function deleteCabins(id) {
 }
 
 export async function createCabin(newCabin) {
-  const imageName = `${Math.random(8)}-${newCabin.image.name.replaceAll(
+  const imageName = `${Math.random(8)}-${newCabin.image?.name.replaceAll(
     "/",
     ""
   )}`;
   const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
-
-  // https://aqiwfmggzagkkkqkpqcp.supabase.co/storage/v1/object/public/cabin-images//cabin-002.jpg
 
   const { data, error } = await supabase
     .from("cabins")

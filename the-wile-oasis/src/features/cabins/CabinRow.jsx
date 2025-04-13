@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { deleteCabins } from "../../services/apiCabins";
-import toast from "react-hot-toast";
+import { useDeleteCabin } from "./useDeleteCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -37,12 +35,6 @@ const Price = styled.div`
   font-weight: 600;
 `;
 
-const TotalPrice = styled.div`
-  font-family: "Sono";
-  font-weight: 600;
-  color: var(--color-brand-900);
-`;
-
 const Capacity = styled.div`
   font-family: "Sono";
   font-weight: 600;
@@ -65,23 +57,7 @@ function CabinRow({ cabin }) {
     image,
   } = cabin;
 
-  const queryClient = useQueryClient();
-
-  const {
-    isPending: isDeleting,
-    onSuccess,
-    onError,
-    mutate,
-  } = useMutation({
-    mutationFn: (id) => deleteCabins(id),
-    onSuccess: () => {
-      toast.success("Cabin deleted!"),
-        queryClient.invalidateQueries({
-          queryKey: ["cabins"],
-        });
-    },
-    onError: (err) => toast.error("The cabin could not be deleted."),
-  });
+  const { isDeleting, mutate } = useDeleteCabin();
 
   return (
     <TableRow>
@@ -89,8 +65,11 @@ function CabinRow({ cabin }) {
       <Cabin>{name}</Cabin>
       <Capacity>Fits upto {maxCapacity} guests</Capacity>
       <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>-{formatCurrency(discount)}</Discount>
-      {/* <TotalPrice>{formatCurrency(regularPrice - discount)}</TotalPrice> */}
+      {discount ? (
+        <Discount>-{formatCurrency(discount)}</Discount>
+      ) : (
+        <span>&mdash;</span>
+      )}
       <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
         Delete
       </button>
