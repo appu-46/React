@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 
-function CreateCabinForm() {
+function CreateCabinForm({ onClose: onCloseModel }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
@@ -17,7 +17,9 @@ function CreateCabinForm() {
     createCabin(
       { ...data, image: data.image?.[0] },
       {
-        onSuccess: () => reset(),
+        onSuccess: () => {
+          reset(), onCloseModel?.();
+        },
       }
     );
     console.log(data);
@@ -90,7 +92,12 @@ function CreateCabinForm() {
       <FormRow orientation="horizontal">
         {/* type is an HTML attribute! */}
         <>
-          <Button variation="secondary" size="medium" type="reset">
+          <Button
+            variation="secondary"
+            size="medium"
+            type="reset"
+            onClick={() => onCloseModel?.()}
+          >
             Cancel
           </Button>
           <Button variation="primary" size="medium" disabled={isCreating}>
