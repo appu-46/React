@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 
-function CreateCabinForm({ onClose: onCloseModel }) {
+function CreateCabinForm({ onCloseModal }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
@@ -18,7 +18,7 @@ function CreateCabinForm({ onClose: onCloseModel }) {
       { ...data, image: data.image?.[0] },
       {
         onSuccess: () => {
-          reset(), onCloseModel?.();
+          reset(), onCloseModal?.();
         },
       }
     );
@@ -96,7 +96,7 @@ function CreateCabinForm({ onClose: onCloseModel }) {
             variation="secondary"
             size="medium"
             type="reset"
-            onClick={() => onCloseModel?.()}
+            onClick={() => onCloseModal?.()}
           >
             Cancel
           </Button>
