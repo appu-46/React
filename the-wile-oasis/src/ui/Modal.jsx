@@ -73,8 +73,16 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   if (name !== openName) return null;
+
+  function handleOverlayClick(e) {
+    // Only close if the click is directly on the overlay, not on the modal content
+    if (e.target === e.currentTarget) {
+      console.log(e);
+      close();
+    }
+  }
   return createPortal(
-    <Overlay>
+    <Overlay onClick={(data) => handleOverlayClick(data)}>
       <StyledModal>
         <Button onClick={close}>
           <HiXMark />
