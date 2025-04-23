@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
+import { HiTrash } from "react-icons/hi2";
+import { FaCopy } from "react-icons/fa6";
+import Button from "../../ui/Button";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import Modal from "../../ui/Modal";
 
 const TableRow = styled.div`
   display: grid;
@@ -47,7 +52,7 @@ const Discount = styled.div`
   color: var(--color-green-700);
 `;
 
-function CabinRow({ cabin }) {
+function CabinRow({ cabin, onCloseModal }) {
   const {
     id: cabinId,
     name,
@@ -84,12 +89,29 @@ function CabinRow({ cabin }) {
         <span>&mdash;</span>
       )}
       <div>
-        <button onClick={() => handleDuplicate(cabinId)} disabled={isCreating}>
-          Duplicate
-        </button>
-        <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
-          Delete
-        </button>
+        <Button
+          variation="secondary"
+          size="small"
+          onClick={() => handleDuplicate(cabinId)}
+          disabled={isCreating}
+        >
+          <FaCopy />
+        </Button>
+        <Modal>
+          <Modal.Open>
+            <Button variation="secondary" size="small">
+              <HiTrash />
+            </Button>
+          </Modal.Open>
+          <Modal.Window>
+            <ConfirmDelete
+              resourceName="cabin"
+              disabled={isDeleting}
+              onCloseModal={onCloseModal}
+              onConfirm={() => deleteCabin(cabinId)}
+            />
+          </Modal.Window>
+        </Modal>
       </div>
     </TableRow>
   );
