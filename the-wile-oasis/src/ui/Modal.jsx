@@ -77,7 +77,7 @@ function Window({ children, name }) {
   function handleOverlayClick(e) {
     // Only close if the click is directly on the overlay, not on the modal content
     if (e.target === e.currentTarget) {
-      console.log(e);
+      // console.log(e);
       close();
     }
   }

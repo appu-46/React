@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCabins } from "./useCabins";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
+import { useSearchParams } from "react-router-dom";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -29,7 +30,12 @@ const TableHeader = styled.header`
 
 function CabinTable() {
   const { isPending, cabins } = useCabins();
+  const [searchParams] = useSearchParams();
   if (isPending) return <Spinner />;
+
+  const filterValue = searchParams.get("discount");
+
+  let filteredCabins;
 
   return (
     <Table>
