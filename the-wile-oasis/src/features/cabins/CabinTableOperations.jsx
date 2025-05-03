@@ -1,6 +1,7 @@
 // import SortBy from "../../ui/";
 import Filter from "../../ui/Filter";
 import TableOperations from "../../ui/TableOperations";
+import SortBy from "../../ui/SortBy";
 
 function CabinTableOperations() {
   return (
@@ -15,7 +16,7 @@ function CabinTableOperations() {
         ]}
       />
 
-      {/* <SortBy
+      <SortBy
         options={[
           { value: "name-asc", label: "Sort by name (A-Z)" },
           { value: "name-desc", label: "Sort by name (Z-A)" },
@@ -30,7 +31,7 @@ function CabinTableOperations() {
             label: "Sort by capacity (high first)",
           },
         ]}
-      /> */}
+      />
     </TableOperations>
   );
 }
