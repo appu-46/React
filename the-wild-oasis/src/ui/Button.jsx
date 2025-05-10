@@ -57,7 +57,7 @@ const Button = styles.button`
 `;
 
 Button.defaultProps = {
-  $variation: "primary",
-  $size: "medium",
+  variation: "primary",
+  size: "medium",
 };
 export default Button;
