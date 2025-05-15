@@ -40,8 +40,15 @@ function Filter({ filterField, options }) {
   const currentFilterValue =
     searchParams.get(filterField) || options.at(0).value;
   function handleClick(value) {
-    searchParams.set(filterField, value);
-    setSearchParams(searchParams);
+    setSearchParams((searchParams) => {
+      searchParams.set(filterField, value);
+      return searchParams;
+    });
+    // Reset the pagination to avoid the fetching bug
+    setSearchParams((searchParams) => {
+      searchParams.set("page", 1);
+      return searchParams;
+    });
   }
   return (
     <StyledFilter>
