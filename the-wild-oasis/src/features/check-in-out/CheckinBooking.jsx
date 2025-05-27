@@ -8,6 +8,7 @@ import Button from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
+import { useBooking } from "../bookings/useBoooking";
 
 const Box = styled.div`
   /* Box */
@@ -18,9 +19,11 @@ const Box = styled.div`
 `;
 
 function CheckinBooking() {
+  const { booking, isPending } = useBooking();
+
   const moveBack = useMoveBack();
 
-  const booking = {};
+  console.log(booking);
 
   const {
     id: bookingId,
