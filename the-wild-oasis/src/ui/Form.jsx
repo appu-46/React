@@ -17,7 +17,9 @@ const Form = styled.form`
     css`
       width: 80rem;
     `}
-    
+  border-radius: 20px;
+  padding: 20px;
+  background-color: var(--color-grey-0);
   overflow: hidden;
   font-size: 1.4rem;
 `;

@@ -55,13 +55,15 @@ const Validate = styled.div`
 
 function FormRow({ label, error, children, orientation }) {
   return (
-    <StyledFormRow orientation={orientation}>
-      {label && <Label htmlFor={children.props.id}>{label}</Label>}
-      <Validate orientation={orientation}>
-        {children}
-        {error && <Error>{error}</Error>}
-      </Validate>
-    </StyledFormRow>
+    <>
+      <StyledFormRow orientation={orientation}>
+        {label && <Label htmlFor={children.props.id}>{label}</Label>}
+        <Validate orientation={orientation}>
+          {children}
+          {error && <Error>{error}</Error>}
+        </Validate>
+      </StyledFormRow>
+    </>
   );
 }
 
