@@ -23,6 +23,7 @@ function SignupForm() {
         <Input
           type="text"
           id="fullName"
+          disabled={isSigningUp}
           {...register("fullName", { required: "This field is required." })}
         />
       </FormRow>
@@ -38,6 +39,7 @@ function SignupForm() {
               message: "Please enter valid email.",
             },
           })}
+          disabled={isSigningUp}
         />
       </FormRow>
 
@@ -55,6 +57,7 @@ function SignupForm() {
               message: "The password should be atleast 8 characters long.",
             },
           })}
+          disabled={isSigningUp}
         />
       </FormRow>
 
@@ -67,12 +70,13 @@ function SignupForm() {
             validate: (value) =>
               value === getValues().password || "Passwords should match.",
           })}
+          disabled={isSigningUp}
         />
       </FormRow>
 
       <FormRow orientation="horizontal">
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" disabled={isSigningUp}>
           Cancel
         </Button>
         <Button disabled={isSigningUp}>Create new user</Button>
