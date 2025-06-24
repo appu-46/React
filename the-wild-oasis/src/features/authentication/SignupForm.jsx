@@ -4,23 +4,19 @@ import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 
 import { useForm } from "react-hook-form";
+import { useSignup } from "./useSignup";
 
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
-  const { register, formState, getValues, handleSubmit } = useForm();
+  const { signUp, isSigningUp } = useSignup();
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit(data) {
-    console.log("Form submitted!");
-    console.log("Data received:", data);
-    console.log("Data keys:", Object.keys(data));
-    console.log("Data values:", Object.values(data));
+  function onSubmit({ fullName, email, password }) {
+    signUp({ fullName, email, password }, { onSettled: reset });
   }
 
-  // function onSubmit(data) {
-  //   console.log(data);
-  // }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="Full name" error={errors?.fullname?.message}>
@@ -79,7 +75,7 @@ function SignupForm() {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Create new user</Button>
+        <Button disabled={isSigningUp}>Create new user</Button>
       </FormRow>
     </Form>
   );
