@@ -22,6 +22,9 @@ export async function deleteCabins(id) {
 
 export async function createCabin(newCabin) {
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
+  const cabinBucketUrl = `${supabaseUrl}${
+    import.meta.env.VITE_CABIN_IMAGES_PATH
+  }`;
   console.log(newCabin);
 
   const imageName = hasImagePath
@@ -29,7 +32,7 @@ export async function createCabin(newCabin) {
     : `${Math.random(8)}-${newCabin.image?.name.replaceAll("/", "")}`;
   const imagePath = hasImagePath
     ? newCabin.image
-    : `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
+    : `${cabinBucketUrl}/${imageName}`;
 
   const { data, error } = await supabase
     .from("cabins")
