@@ -57,10 +57,12 @@ export async function updateCurrentUser({ fullName, password, avatar }) {
   if (password) updateData = { password };
   if (fullName) updateData = { data: { fullName } };
 
-  const { data, error } = await supabase.auth.updateUser(updateData);
+  const { data, error: updateError } = await supabase.auth.updateUser(
+    updateData
+  );
 
-  if (error) {
-    throw (new Error(error.message), console.log(error));
+  if (updateError) {
+    throw new Error(updateError.message);
   }
 
   if (!avatar) return data;
@@ -79,7 +81,6 @@ export async function updateCurrentUser({ fullName, password, avatar }) {
   // 3. Update avatar image
   if (!uploadError) {
     const avatarPath = `${cabinBucketPath}${fileName}`;
-    console.log(avatarPath);
     const { data: avatardata, error: avatarerror } =
       await supabase.auth.updateUser({ data: { avatarPath } });
 
@@ -89,5 +90,5 @@ export async function updateCurrentUser({ fullName, password, avatar }) {
 
     return avatardata;
   }
-  return data;
+  return { data, updateError };
 }
