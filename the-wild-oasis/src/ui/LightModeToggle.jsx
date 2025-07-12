@@ -1,6 +1,6 @@
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import ButtonIcon from "./ButtonIcon";
-import { useLightMode } from "../context/LightModeContext";
+import useLightMode from "../hooks/useLightMode";
 
 function LightModeToggle() {
   const { isLightMode, lightModeToggle } = useLightMode();

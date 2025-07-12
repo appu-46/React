@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useEffect } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 const LightModeContext = createContext();
@@ -35,13 +35,4 @@ function LightModeProvider({ children }) {
   );
 }
 
-function useLightMode() {
-  const context = useContext(LightModeContext);
-
-  if (context === undefined)
-    throw new Error("LightModeContext was used outside the LightModeProvider");
-
-  return context;
-}
-
-export { LightModeProvider, useLightMode };
+export { LightModeProvider, LightModeContext };

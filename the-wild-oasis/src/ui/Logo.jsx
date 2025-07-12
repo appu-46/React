@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useLightMode } from "../context/LightModeContext";
+import useLightMode from "../hooks/useLightMode";
 
 const StyledLogo = styled.div`
   text-align: center;
