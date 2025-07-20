@@ -32,7 +32,7 @@ function SalesChart({ bookings, numDays }) {
 
   const data = allDates.map((date) => {
     return {
-      label: format(date, "MMM,dd"),
+      label: format(date, "dd/MM"),
       totalSales: bookings
         .filter((booking) => isSameDay(date, new Date(booking.created_at)))
         .reduce((acc, cur) => acc + cur.totalPrice, 0),
@@ -56,7 +56,10 @@ function SalesChart({ bookings, numDays }) {
       };
   return (
     <StyledSalesChart>
-      <Heading as="h2"> Sales </Heading>
+      <Heading as="h2">
+        Sales from {format(allDates.at(0), "dd MMM")} &mdash;
+        {format(allDates.at(-1), "dd MMM")}{" "}
+      </Heading>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={data}>
           <defs>
