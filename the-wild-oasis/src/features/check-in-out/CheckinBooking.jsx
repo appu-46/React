@@ -61,7 +61,7 @@ function CheckinBooking() {
         },
       });
     } else {
-      checkIn(bookingId);
+      checkIn({ bookingId: bookingId, breakfast: {} });
     }
   }
 
